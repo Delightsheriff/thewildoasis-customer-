@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Cabins",
+  description: "Find your perfect cabin",
+};
+
 export default function Page() {
   return (
     <div>
