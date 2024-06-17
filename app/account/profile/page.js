@@ -1,5 +1,11 @@
 import SelectCountry from "@/app/_components/SelectCountry";
 
+export const metadata = {
+  title: "Update your guest profile",
+  description:
+    "Update your guest profile to make your check-in process faster and smoother.",
+};
+
 export default function Page() {
   // CHANGE
   const countryFlag = "pt.jpg";
