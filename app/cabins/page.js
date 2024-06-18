@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+import Filter from "../_components/Filter";
 
 export const metadata = {
   title: "Cabins",
@@ -12,7 +13,16 @@ export const revalidate = 3600;
 // export const revalidate = 15;
 
 //typical server component
-export default function Page() {
+//storing states in the server through the searchParams URL
+
+export default function Page({ searchParams }) {
+  // console.log(searchParams);
+
+  //getting the capacity parameter from the URL{the data stored in the server component}
+  const filter = searchParams?.capacity ?? "all";
+
+  // console.log(filter);
+
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -26,10 +36,13 @@ export default function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+      <div className="flex justify-end mb-8">
+        <Filter />
+      </div>
 
       {/* //Suspense is a react component that allows you to wrap around a component that is loading data, and it will show a fallback component until the data is loaded */}
-      <Suspense fallback={<Spinner />}>
-        <CabinList />
+      <Suspense fallback={<Spinner />} key={filter}>
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
