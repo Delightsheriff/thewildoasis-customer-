@@ -7,6 +7,10 @@ export const metadata = {
   description: "Find your perfect cabin",
 };
 
+// this makes the page dynamic, basicalling telling Next.js to revalidate the page every 0 seconds
+export const revalidate = 3600;
+// export const revalidate = 15;
+
 //typical server component
 export default function Page() {
   return (
@@ -23,6 +27,7 @@ export default function Page() {
         Welcome to paradise.
       </p>
 
+      {/* //Suspense is a react component that allows you to wrap around a component that is loading data, and it will show a fallback component until the data is loaded */}
       <Suspense fallback={<Spinner />}>
         <CabinList />
       </Suspense>
