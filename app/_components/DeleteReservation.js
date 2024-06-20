@@ -4,7 +4,7 @@ import { deleteReservation } from "../_lib/actions";
 import { useTransition } from "react";
 import SpinnerMini from "./SpinnerMini";
 
-function DeleteReservation({ bookingId }) {
+function DeleteReservation({ bookingId, onDelete }) {
   //using useTransition to handle the delete action {loading states}
   const [isPending, startTransition] = useTransition();
 
@@ -13,7 +13,7 @@ function DeleteReservation({ bookingId }) {
     if (confirm("Are you sure you want to delete this reservation?") === false)
       return;
     startTransition(() => {
-      deleteReservation(bookingId);
+      onDelete(bookingId);
     });
   }
 
